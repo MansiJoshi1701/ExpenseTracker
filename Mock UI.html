@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PocketPal Mockup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans p-10 flex justify-center">
+
+    <!-- APP CONTAINER -->
+    <div class="w-full max-w-3xl space-y-6">
+
+        <!-- COMPONENT 1: NEW EXPENSE FORM -->
+        <div class="bg-indigo-700 p-6 rounded-2xl shadow-lg border border-indigo-600">
+            <h2 class="text-xs font-bold text-indigo-200 uppercase mb-4 tracking-wider">Add New Expense</h2>
+            <form class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-1">
+                        <label class="text-sm font-medium">Title</label>
+                        <input type="text" placeholder="e.g. Toilet Paper" class="w-full p-3 rounded-lg bg-indigo-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-400">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-sm font-medium">Amount</label>
+                        <input type="number" placeholder="0.00" min="0.01" step="0.01" class="w-full p-3 rounded-lg bg-indigo-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-400">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4 items-end">
+                    <div class="space-y-1">
+                        <label class="text-sm font-medium">Date</label>
+                        <input type="date" class="w-full p-3 rounded-lg bg-indigo-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-400">
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="button" class="bg-indigo-900 hover:bg-indigo-950 text-white font-bold py-3 px-8 rounded-lg transition-colors">
+                            Add Expense
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- MAIN CONTENT CARD -->
+        <div class="bg-gray-800 p-6 rounded-2xl shadow-xl border border-gray-700">
+            
+            <!-- COMPONENT 2: FILTER -->
+            <div class="flex justify-between items-center mb-6">
+                <label class="text-gray-300 font-bold">Filter by year</label>
+                <select class="p-2 rounded-lg bg-gray-900 border border-gray-600 text-white w-32 font-bold focus:outline-none">
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                </select>
+            </div>
+
+            <!-- COMPONENT 3: CHART (Visualizing Monthly Spending) -->
+            <div class="bg-gray-200 p-4 rounded-xl mb-6 flex justify-around h-40 items-end">
+                <!-- Example Bar: Jan (10% height) -->
+                <div class="flex flex-col items-center gap-1 h-full justify-end w-4">
+                    <div class="w-full bg-indigo-800 rounded-sm transition-all duration-300" style="height: 10%;"></div>
+                    <span class="text-gray-800 text-[10px] font-bold">Jan</span>
+                </div>
+                <!-- Example Bar: Feb (0% height) -->
+                <div class="flex flex-col items-center gap-1 h-full justify-end w-4">
+                    <div class="w-full bg-indigo-800 rounded-sm transition-all duration-300" style="height: 0%;"></div>
+                    <span class="text-gray-800 text-[10px] font-bold">Feb</span>
+                </div>
+                <!-- Example Bar: Mar (60% height) -->
+                <div class="flex flex-col items-center gap-1 h-full justify-end w-4">
+                    <div class="w-full bg-indigo-800 rounded-sm transition-all duration-300" style="height: 60%;"></div>
+                    <span class="text-gray-800 text-[10px] font-bold">Mar</span>
+                </div>
+                <!-- ... other months ... -->
+                <div class="flex flex-col items-center gap-1 h-full justify-end w-4">
+                    <div class="w-full bg-indigo-800 rounded-sm transition-all duration-300" style="height: 80%;"></div>
+                    <span class="text-gray-800 text-[10px] font-bold">Dec</span>
+                </div>
+            </div>
+
+            <!-- COMPONENT 4: EXPENSES LIST -->
+            <ul class="space-y-4">
+                
+                <!-- Expense Item 1 -->
+                <li class="bg-gray-700 p-3 rounded-xl flex items-center gap-4 shadow-sm hover:bg-gray-600 transition-colors cursor-default">
+                    <!-- Date Box -->
+                    <div class="bg-gray-900 border border-gray-600 w-20 h-20 rounded-xl flex flex-col items-center justify-center text-white shrink-0">
+                        <div class="text-xs font-bold text-indigo-400">March</div>
+                        <div class="text-xl font-black">12</div>
+                        <div class="text-xs font-bold">2024</div>
+                    </div>
+                    <!-- Details -->
+                    <div class="flex-1">
+                        <h2 class="text-lg font-bold text-white">Car Insurance</h2>
+                    </div>
+                    <!-- Price -->
+                    <div class="bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg border border-indigo-500">
+                        $294.67
+                    </div>
+                </li>
+
+                <!-- Expense Item 2 -->
+                <li class="bg-gray-700 p-3 rounded-xl flex items-center gap-4 shadow-sm hover:bg-gray-600 transition-colors cursor-default">
+                    <div class="bg-gray-900 border border-gray-600 w-20 h-20 rounded-xl flex flex-col items-center justify-center text-white shrink-0">
+                        <div class="text-xs font-bold text-indigo-400">March</div>
+                        <div class="text-xl font-black">28</div>
+                        <div class="text-xs font-bold">2024</div>
+                    </div>
+                    <div class="flex-1">
+                        <h2 class="text-lg font-bold text-white">New Desk (Wooden)</h2>
+                    </div>
+                    <div class="bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg border border-indigo-500">
+                        $450.00
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
