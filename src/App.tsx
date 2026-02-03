@@ -76,7 +76,7 @@ function App() {
                 <label className='block'>Date</label>
                 <input value={newExpense.date} onChange={e => setNewExpense(prev => ({...prev, date: (e.target.value)}))} className='block h-10 bg-white rounded-xl p-1 text-black' type="date" placeholder='dd-mm-yy'/>
               </div>
-              <button type='submit' disabled={newExpense.date==='' || newExpense.title==='' || newExpense.amount===''} className='bg-indigo-900 hover:bg-indigo-950 text-white rounded-xl px-6 font-bold'>Add expense</button>
+              <button type='submit' disabled={newExpense.date==='' || newExpense.title==='' || newExpense.amount===''} className='bg-indigo-900 hover:bg-indigo-950 text-white rounded-xl px-6 font-bold disabled:bg-gray-600 disabled:text-gray-400'>Add expense</button>
             </div>
             
           </form>
