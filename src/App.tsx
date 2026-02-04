@@ -38,6 +38,7 @@ function App() {
   const addNewExpense = (e: React.SubmitEvent<HTMLFormElement>) => {    
     e.preventDefault();
     console.log("expenseList updated with new item");
+    console.log("Date = " , newExpense.date);
     newExpense.id = uuidv4();
     setExpenseList(prev => [newExpense , ...prev]); //Add the 'newExpense' to the expenseList using the setter function
     setNewExpense(defaultExpense);    
@@ -49,11 +50,11 @@ function App() {
   
 
   return (
-    <div className='min-h-screen bg-gray-900 flex-cols justify-center p-8 space-y-6 text-white'>
+    <div className='min-h-screen bg-gray-900 flex flex-col items-center p-8 space-y-6 text-white'>
 
       
       {/* App Container */}
-      <div className='w-xl space-y-6'>
+      <div className='w-2xl space-y-6'>
 
         <div className='bg-indigo-600 p-4 rounded-2xl space-y-4'>
           <h3 className='text-xs text-indigo-200 font-bold'>ADD NEW EXPENSE</h3>
@@ -85,12 +86,12 @@ function App() {
       </div>
 
       {/* DISPLAY AREA */}
-      <div className='w-xl space-y-6'>
+      <div className='w-2xl space-y-6 rounded-xl bg-gray-800 px-5 py-7'>
         <div className='flex justify-between'>
           <h2 className='font-bold  text-white'>Filter by Year</h2>
-          <select id="select-year" value={selectedYear} onChange={e => setSelectedYear(e.target.value)}>
+          <select id="select-year" value={selectedYear} onChange={e => setSelectedYear(e.target.value)} className='rounded-lg px-3 py-2 bg-gray-900'>
             {yearOptions.map(opt => (
-              <option key={opt.value} value={opt.value} className='text-black'>
+              <option key={opt.value} value={opt.value}>
                 {opt.label}
               </option>
             ))}
@@ -101,18 +102,30 @@ function App() {
         
 
         {/* List of all expenses for selectedYear */}
-         
-        {expenseList.filter(f => f.date.slice(0,4) === selectedYear).length === 0 ? (
-          <p className='text-gray-500 text-center italic'>No expenses found for {selectedYear}</p>
-        ) : (
-          expenseList.filter(f => f.date.slice(0,4) === selectedYear).map(item => (
-          <div key={item.id} className='text-bold text-white w-xl bg-gray-400 rounded-xl flex justify-between p-3'>
-            <h2>{item.title}</h2>
-            <span className=''>{item.amount}</span>
-          </div>
-        ))
-        ) }
+        <ul className='space-y-4'> 
+          {expenseList.filter(f => f.date.slice(0,4) === selectedYear).length === 0 ? (
+            <li className='text-gray-500 text-center italic'>No expenses found for {selectedYear}</li>
+          ) : (            
+            expenseList.filter(f => f.date.slice(0,4) === selectedYear).map(item => {
+              const dateObj = new Date(item.date);
+              const month = dateObj.toLocaleString('en-US', { month: 'short' });
+              const day = dateObj.toLocaleString('en-US', { day: '2-digit' });
+              const year = dateObj.getFullYear();
 
+              return(
+                <li key={item.id} className='flex justify-center items-center font-bold text-white w-full bg-gray-600 rounded-xl flex justify-between p-3 space-x-3'>
+                  <div className='rounded-xl p-2 h-20 w-20 bg-gray-900 text-white font-bold flex flex-col items-center'>
+                    <span className='text-sm text-indigo-400'>{month}</span>
+                    <span className='text-xl font-black'>{day}</span>
+                    <span className='text-sm'>{year}</span>
+                  </div>
+                  <h2 className='flex-1 text-lg'>{item.title}</h2>            
+                  <span className='font-bold rounded-xl py-2 px-4 bg-indigo-700 border border-indigo-500'>${item.amount}</span>
+                </li>
+              );
+            })            
+          )}
+        </ul>
       </div>
       
     </div>
